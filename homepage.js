@@ -61,6 +61,9 @@ function addProduct(product) {
     bttDetail.classList.add("btn", "btn-sm", "btn-outline-secondary", "m-1");
     containerBtt.appendChild(bttDetail);
     bttDetail.innerText = "Detail";
+    bttDetail.addEventListener("click", function (e) {
+      window.location.href = `./detail.html?id=${element._id}`;
+    });
 
     const price = document.createElement("small");
     price.classList.add("text-muted");

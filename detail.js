@@ -53,4 +53,19 @@ function displayProductDetails(product) {
   price.classList.add("text-muted");
   price.innerText = "PRICE " + product.price + "€";
   bodyCard.appendChild(price);
+
+  const containerCard = document.createElement("div");
+  containerCard.classList.add("d-flex", "justify-content-between", "align-items-center");
+  bodyCard.appendChild(containerCard);
+
+  const containerBtt = document.createElement("div");
+  containerCard.appendChild(containerBtt);
+
+  const bttModify = document.createElement("button");
+  bttModify.classList.add("btn", "btn-sm", "btn-outline-secondary", "m-1");
+  containerBtt.appendChild(bttModify);
+  bttModify.innerText = "Modify";
+  bttModify.addEventListener("click", function (e) {
+    window.location.href = `./index.html?id=${product._id}`;
+  });
 }
