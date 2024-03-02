@@ -2,6 +2,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 getProductDetails(productId);
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+
 function getProductDetails(productId) {
   fetch(`https://striveschool-api.herokuapp.com/api/product/${productId}`, {
     method: "GET",
@@ -23,49 +25,73 @@ function getProductDetails(productId) {
     });
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+
 function displayProductDetails(product) {
   const productDetailsContainer = document.getElementById("product-details-container");
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
+
   const card = document.createElement("div");
-  card.classList.add("card", "shadow", "p-3", "mb-5", "rounded-4");
+  card.classList.add("card", "shadow", "p-3", "mb-5", "rounded-4", "w-50", "m-auto");
   productDetailsContainer.appendChild(card);
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
 
   const immagine = document.createElement("img");
   immagine.classList.add("card-img-top", "object-fit-cover");
   immagine.src = product.imageUrl;
   card.appendChild(immagine);
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
+
   const bodyCard = document.createElement("div");
   bodyCard.classList.add("card-body", "text-center");
   card.appendChild(bodyCard);
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
 
   const title = document.createElement("h3");
   title.classList.add("card-title");
   title.innerText = product.brand;
   bodyCard.appendChild(title);
 
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+  const name = document.createElement("p");
+  name.classList.add("card-text");
+  name.innerText = product.name;
+  bodyCard.appendChild(name);
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
+
   const description = document.createElement("p");
   description.classList.add("card-text");
-  description.innerText = product.name;
+  description.innerText = product.description;
   bodyCard.appendChild(description);
+
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
 
   const price = document.createElement("small");
   price.classList.add("text-muted");
-  price.innerText = "PRICE " + product.price + "€";
+  price.innerText = product.price + "€";
   bodyCard.appendChild(price);
 
-  const containerCard = document.createElement("div");
-  containerCard.classList.add("d-flex", "justify-content-between", "align-items-center");
-  bodyCard.appendChild(containerCard);
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-  const containerBtt = document.createElement("div");
-  containerCard.appendChild(containerBtt);
+  const containerBtn = document.createElement("div");
+  containerBtn.classList.add("bg-secondary", "border-top", "mt-2");
+  bodyCard.appendChild(containerBtn);
 
-  const bttModify = document.createElement("button");
-  bttModify.classList.add("btn", "btn-sm", "btn-outline-secondary", "m-1");
-  containerBtt.appendChild(bttModify);
-  bttModify.innerText = "Modify";
-  bttModify.addEventListener("click", function (e) {
+  // ----------------------------------------------------------------------------------------------------------------------------------------------
+
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "btn-outline-secondary", "m-3");
+  bodyCard.appendChild(editBtn);
+  editBtn.innerText = "Edit";
+  editBtn.addEventListener("click", function (e) {
     window.location.href = `./index.html?id=${product._id}`;
   });
 }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
